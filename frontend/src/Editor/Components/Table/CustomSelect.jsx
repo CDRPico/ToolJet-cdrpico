@@ -9,11 +9,20 @@ export const CustomSelect = ({ options, value, multiple, onChange, isEditable, w
     if (!isEditable) {
       const stringifyValue = String(valueProps.value);
       const arrayOfValueProps = stringifyValue.includes(',') ? stringifyValue.split(', ') : stringifyValue.split(' ');
-      return arrayOfValueProps.map((value, index) => (
-        <span key={index} className="badge bg-blue-lt p-2 mx-1">
-          {value}
-        </span>
-      ));
+    
+      const findBackgroundColor = (valueToMatch) => {
+        const match = options.find(obj => obj.value === valueToMatch);
+        return match ? match.background : "#206bc41a"; // Default to white if no match is found
+      };
+    
+      return arrayOfValueProps.map((value, index) => {
+        const bgColor = findBackgroundColor(value);
+        return (
+          <span key={index} className="badge p-2 mx-1" style={{backgroundColor: bgColor}}>
+            {value}
+          </span>
+        );
+      });
     }
     if (valueProps) {
       const stringifyValue = String(valueProps.value);

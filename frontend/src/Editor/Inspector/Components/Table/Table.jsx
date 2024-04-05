@@ -530,6 +530,22 @@ class TableComponent extends React.Component {
                   }}
                 />
               </div>
+              <div data-cy={`input-and-label-labels`} className="field mb-2">
+                <label className="form-label">{this.props.t('widget.Table.backgrounds', 'Background')}</label>
+                <CodeHinter
+                  currentState={this.props.currentState}
+                  initialValue={column.backgrounds}
+                  theme={this.props.darkMode ? 'monokai' : 'default'}
+                  mode="javascript"
+                  lineNumbers={false}
+                  placeholder={'{{["#ffffff", "#000000", "#b2b2b2"]}}'}
+                  onChange={(value) => this.onColumnItemChange(index, 'backgrounds', value)}
+                  componentName={this.getPopoverFieldSource(column.columnType, 'backgrounds')}
+                  popOverCallback={(showing) => {
+                    this.setColumnPopoverRootCloseBlocker('backgrounds', showing);
+                  }}
+                />
+              </div>
             </div>
           )}
 

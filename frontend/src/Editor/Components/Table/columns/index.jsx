@@ -47,10 +47,19 @@ export default function generateColumnsData({
       columnOptions.selectOptions = [];
       const values = resolveReferences(column.values, currentState, []);
       const labels = resolveReferences(column.labels, currentState, []);
+      const backgrounds = resolveReferences(
+        column.backgrounds,
+        currentState,
+        []
+      );
 
       if (Array.isArray(labels) && Array.isArray(values)) {
         columnOptions.selectOptions = labels.map((label, index) => {
-          return { name: label, value: values[index] };
+          return {
+            name: label,
+            value: values[index],
+            background: backgrounds[index] ?? "#206bc41a",
+          };
         });
       }
     }
@@ -431,13 +440,13 @@ export default function generateColumnsData({
                   onChange={(value) => {
                     handleCellValueChange(cell.row.index, column.key || column.name, value, cell.row.original).then(
                       () => {
-                        fireEvent('OnTableToggleCellChanged', {
-                          column: column,
-                          rowId: cell.row.id,
-                          row: cell.row.original,
-                          tableColumnEvents,
-                        });
-                      }
+                      fireEvent('OnTableToggleCellChanged', {
+                        column: column,
+                        rowId: cell.row.id,
+                        row: cell.row.original,
+                        tableColumnEvents,
+                      });
+                    }
                     );
                   }}
                 />

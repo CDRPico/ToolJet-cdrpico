@@ -5783,6 +5783,16 @@ ReactDOM.render(<ConnectedComponent />, document.body);`,
           },
         },
       },
+      backgrounds: {
+        type: 'code',
+        displayName: 'Backgrounds',
+        validation: {
+          schema: {
+            type: 'union',
+            schemas: [{ type: 'array', element: { type: 'union', schemas: [{ type: 'string' }, { type: 'number' }] } }],
+          },
+        },
+      },
       defaultSelected: {
         type: 'code',
         displayName: 'Default selected',
