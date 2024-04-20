@@ -4,6 +4,7 @@ import CheckboxTree from 'react-checkbox-tree';
 // eslint-disable-next-line import/no-unresolved
 import 'react-checkbox-tree/lib/react-checkbox-tree.css';
 import { isExpectedDataType } from '@/_helpers/utils.js';
+import '@/_styles/widgets/tree-select.scss';
 
 export const TreeSelect = ({
   height,
@@ -23,7 +24,21 @@ export const TreeSelect = ({
   const data = isExpectedDataType(properties.data, 'array');
   const checkedData = isExpectedDataType(properties.checkedData, 'array');
   const expandedData = isExpectedDataType(properties.expandedData, 'array');
+  const [modifiedData, setModifiedData] = useState([]);
   let pathObj = {};
+
+  const addClassNameBasedOnTheme = (data, isDarkMode, textColor) => {
+    const className = isDarkMode && textColor === '#000' ? 'dark-mode' : 'light-mode';;
+
+    data.forEach(item => {
+      item.className = className;
+
+      // If the item has children, apply the className recursively
+      if (item.children && item.children.length) {
+        addClassNameBasedOnTheme(item.children, isDarkMode, textColor);
+      }
+    });
+  };
 
   useEffect(() => {
     const checkedArr = [],
@@ -55,6 +70,13 @@ export const TreeSelect = ({
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [JSON.stringify(checkedData), JSON.stringify(data)]);
+
+  useEffect(() => {
+    const dataCopy = JSON.parse(JSON.stringify(data));
+    addClassNameBasedOnTheme(dataCopy, darkMode, styles.textColor);
+    setModifiedData(dataCopy);
+    console.log(dataCopy);
+  }, [darkMode]);
 
   useEffect(() => {
     setExposedVariable('expanded', expandedData);
@@ -115,11 +137,11 @@ export const TreeSelect = ({
       }}
       data-cy={dataCy}
     >
-      <div className="card-title" style={{ marginBottom: '0.5rem' }}>
+      <div className="card-title" style={{ marginBottom: '0.5rem', color: textColor, }}>
         {label}
       </div>
       <CheckboxTree
-        nodes={data}
+        nodes={modifiedData}
         checked={checked}
         expanded={expanded}
         showNodeIcon={false}

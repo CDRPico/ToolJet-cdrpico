@@ -1,0 +1,10 @@
+$light-mode-text-color: #000;
+$dark-mode-text-color: #fff;
+
+.light-mode {
+    color: $light-mode-text-color;
+}
+
+.dark-mode {
+    color: $dark-mode-text-color;
+}
