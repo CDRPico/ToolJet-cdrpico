@@ -75,7 +75,6 @@ export const TreeSelect = ({
     const dataCopy = JSON.parse(JSON.stringify(data));
     addClassNameBasedOnTheme(dataCopy, darkMode, styles.textColor);
     setModifiedData(dataCopy);
-    console.log(dataCopy);
   }, [darkMode]);
 
   useEffect(() => {
