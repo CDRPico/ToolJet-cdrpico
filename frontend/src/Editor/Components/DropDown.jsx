@@ -233,7 +233,7 @@ export const DropDown = function DropDown({
         data-cy={dataCy}
       >
         <div className="col-auto my-auto">
-          <label style={{ marginRight: label !== '' ? '1rem' : '0.001rem' }} className="form-label py-0 my-0">
+          <label style={{ marginRight: label !== '' ? '1rem' : '0.001rem', fontWeight: 400 }} className="form-label py-0 my-0">
             {label}
           </label>
         </div>

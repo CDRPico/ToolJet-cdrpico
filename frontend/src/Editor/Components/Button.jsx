@@ -43,6 +43,9 @@ export const Button = function Button(props) {
     '--loader-color': tinycolor(loaderColor ?? '#fff').toString(),
     borderColor: borderColor,
     boxShadow: boxShadow,
+    whiteSpace: 'normal',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
   };
 
   useEffect(() => {

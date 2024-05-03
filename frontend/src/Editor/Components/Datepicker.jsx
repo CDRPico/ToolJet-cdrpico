@@ -94,7 +94,7 @@ export const Datepicker = function Datepicker({
           !isValid && showValidationError ? 'is-invalid' : ''
         } validation-without-icon px-2 ${darkMode ? 'bg-dark color-white' : 'bg-light'}`}
         selected={date}
-        value={date !== null ? computeDateString(date) : 'select date'}
+        value={date !== null ? computeDateString(date) : 'Selecciona una fecha'}
         onChange={(date) => onDateChange(date)}
         showTimeInput={enableTime ? true : false}
         showTimeSelectOnly={enableDate ? false : true}

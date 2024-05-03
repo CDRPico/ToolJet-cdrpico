@@ -10,9 +10,9 @@ function Label({ label, width, labelRef, darkMode, color, defaultAlignment, dire
             width: label?.length === 0 ? '0%' : auto ? 'auto' : defaultAlignment === 'side' ? `${_width}%` : '100%',
             maxWidth: defaultAlignment === 'side' ? '70%' : '100%',
             display: 'flex',
-            fontWeight: 500,
+            fontWeight: 400,
             justifyContent: direction == 'right' ? 'flex-end' : 'flex-start',
-            fontSize: '12px',
+            fontSize: '14px',
             height: defaultAlignment === 'top' && '20px',
           }}
         >
